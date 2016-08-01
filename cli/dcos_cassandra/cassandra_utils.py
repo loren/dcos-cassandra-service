@@ -22,8 +22,8 @@ __fwk = None
 
 def get_fwk_name():
     return __fwk \
-        or util.get_config().get('cassandra.service_name') \
-        or "cassandra"
+        or util.get_config().get('dse.service_name') \
+        or "dse"
 
 
 def set_fwk_name(name):

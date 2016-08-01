@@ -32,7 +32,7 @@ def cli():
 @click.option('--config-schema',
               help='Prints the config schema for Cassandra.',
               is_flag=True)
-def cassandra(info, name, config_schema):
+def dse(info, name, config_schema):
     if info:
         print("Deploy and manage Cassandra clusters")
     if name:
@@ -49,7 +49,7 @@ def print_schema():
     print(schema)
 
 
-@cassandra.group()
+@dse.group()
 @click.option('--name', help='Name of the cassandra cluster to query')
 def node(name):
     """Manage Cassandra nodes"""
@@ -57,7 +57,7 @@ def node(name):
         cu.set_fwk_name(name)
 
 
-@cassandra.command()
+@dse.command()
 @click.option('--name', help='Name of the cassandra cluster to query')
 def seeds(name):
     """Retrieve seed node information"""
@@ -66,7 +66,7 @@ def seeds(name):
     cu.print_json(seeds_api.seeds())
 
 
-@cassandra.group()
+@dse.group()
 @click.option('--name', help='Name of the cassandra cluster to query')
 def backup(name):
     """Backup Cassandra data"""
@@ -74,7 +74,7 @@ def backup(name):
         cu.set_fwk_name(name)
 
 
-@cassandra.group()
+@dse.group()
 @click.option('--name', help='Name of the cassandra cluster to query')
 def restore(name):
     """Restore Cassandra cluster from backup"""
@@ -82,7 +82,7 @@ def restore(name):
         cu.set_fwk_name(name)
 
 
-@cassandra.group()
+@dse.group()
 @click.option('--name', help='Name of the cassandra cluster to query')
 def cleanup(name):
     """Cleanup old token mappings"""
@@ -90,7 +90,7 @@ def cleanup(name):
         cu.set_fwk_name(name)
 
 
-@cassandra.group()
+@dse.group()
 @click.option('--name', help='Name of the cassandra cluster to query')
 def repair(name):
     """Perform primary range repair."""
@@ -104,7 +104,7 @@ def list():
     cu.print_json(nodes_api.list())
 
 
-@cassandra.command()
+@dse.command()
 @click.option('--name', help='Name of the cassandra cluster to query')
 @click.option('--address',
               is_flag=True,
